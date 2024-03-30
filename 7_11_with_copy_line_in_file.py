@@ -30,26 +30,12 @@ def create_file(phonebook_file_name):
         f_w.writeheader()
 
 
-# создание копии файла телефонной книги командой n
-def create_new_file(second_file_to_copy):
-    with open(phonebook_file_name, "w", encoding='utf-8', newline='') as data:
-        file_write = DictWriter(data, fieldnames=['Имя', 'Фамилия', 'Телефон'])
-        file_write.writeheader()
-
-
 # чтение основного файла телефонной книги командой r
 def read_file(phonebook_file_name):
     with open(phonebook_file_name, "r", encoding='utf-8', newline='') as data:
         f_r = DictReader(data)
         return list(f_r)
 
-
-# чтение копии файла командой rn
-def read_new_file(second_file_to_copy):
-    with open(second_file_to_copy, "r", encoding='utf-8', newline='') as file:
-        file_read = csv.reader(file)
-        for row in file_read:
-            print(row)
 
 
 def write_file(phonebook_file_name, lst):
@@ -60,16 +46,6 @@ def write_file(phonebook_file_name, lst):
         f_w = DictWriter(data, fieldnames=['Имя', 'Фамилия', 'Телефон'])
         f_w.writeheader()
         f_w.writerows(res)
-
-
-def write_new_file(second_file_to_copy, lst_1):
-    res1 = read_new_file(second_file_to_copy)
-    obj1 = {'Имя': lst_1[0], 'Фамилия': lst_1[1], 'Телефон': lst_1[2]}
-    res1.append(obj1)
-    with open(second_file_to_copy, "w", newline='') as data:
-        file_write = DictWriter(data, fieldnames=['Имя', 'Фамилия', 'Телефон'])
-        file_write.writeheader()
-        file_write.writerows(res1)
 
 
 phonebook_file_name = 'phone.csv'
@@ -87,7 +63,7 @@ def main():
 
         # команда для чтения нового файла-копии
         elif command == 'rn':
-            print(read_new_file(second_file_to_copy))
+            print(*read_file(second_file_to_copy), sep=",\n", end="]\n")
 
         # копирование выбранной пользователем строки в новый файл
         elif command == 'copy':
@@ -121,9 +97,3 @@ def main():
 
 main()
 
-# def file_to_file_create(second_file_name):
-#     with open('phone.csv') as source, open('phonebook_0.csv', 'w') as destination:
-#         for line in source:
-#             file_line = input('Введите номер строки, которую нужно скопировать: ')
-#             line = file_line
-#             destination.write(line)
