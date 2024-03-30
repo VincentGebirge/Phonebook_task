@@ -122,7 +122,7 @@ def main():
 main()
 
 # def file_to_file_create(second_file_name):
-#     with open('phone.csv') as source, open('phonebook.csv', 'w') as destination:
+#     with open('phone.csv') as source, open('phonebook_0.csv', 'w') as destination:
 #         for line in source:
 #             file_line = input('Введите номер строки, которую нужно скопировать: ')
 #             line = file_line
