@@ -71,7 +71,7 @@ def main():
             file_line = int(input('Введите номер строки, которую нужно скопировать: '))
             with open(phonebook_file_name, mode='r', encoding='utf_8') as fr:
 
-                line_1 = fr.readlines()[file_line]  # находим содержимое нужной строки
+                line_1 = fr.readlines()[file_line-1]  # находим содержимое нужной строки
                 result = {'Имя': line_1[0], 'Фамилия': line_1[1], 'Телефон': line_1[2]}  # записываем содержимое во временный список
             if len(line_1) > file_line:
                 print(f'Cтрока {line_1} скопирована')
