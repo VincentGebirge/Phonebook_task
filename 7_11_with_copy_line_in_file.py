@@ -47,6 +47,17 @@ def write_file(phonebook_file_name, lst):
         f_w.writeheader()
         f_w.writerows(res)
 
+#поиск записи по фамилии
+def search_by_sername(phonebook_file_name):
+    last_name = input('Введите фамилию для поиска:')
+    res = read_file(phonebook_file_name)
+    for elems in res:
+        if elems['Фамилия'] == last_name:
+            print(elems)
+            break
+    else:
+        print('Запись не найдена')
+
 
 phonebook_file_name = 'phone.csv'
 second_file_to_copy = 'phonebook.csv'
@@ -64,6 +75,14 @@ def main():
         # команда для чтения нового файла-копии
         elif command == 'rn':
             print(*read_file(second_file_to_copy), sep=",\n", end="]\n")
+
+        #Команда для поиска записи по фамилии
+        elif command == 'f':
+            if not exists(phonebook_file_name):
+                print('ФАЙЛ ОТСУТСТВУЕТ. СОЗДАЙТЕ ЕГО')
+                continue
+            # print(search_by_sername(phonebook_file_name), sep=",\n", end="]\n")
+            search_by_sername(phonebook_file_name)
 
         # копирование выбранной пользователем строки в новый файл
         elif command == 'copy':
